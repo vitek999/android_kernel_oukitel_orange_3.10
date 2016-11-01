@@ -144,7 +144,7 @@ PowerUp PowerOnList={
 			},
 		},
 #endif
-#if defined(OV8858R2A_MIPI_RAW)
+#if defined(OV8858_MIPI_RAW)
 		{SENSOR_DRVNAME_OV8858_MIPI_RAW,
 			{
 				{SensorMCLK,Vol_High, 0},
