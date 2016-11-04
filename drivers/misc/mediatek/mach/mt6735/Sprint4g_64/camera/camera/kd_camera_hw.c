@@ -255,7 +255,7 @@ u32 pinSet[3][8] = {
             }
 
         }
-        else if (currSensorName && (0 == strcmp(SENSOR_DRVNAME_OV5648_MIPI_RAW, currSensorName)))
+        else if (currSensorName && (0 == strcmp(SENSOR_DRVNAME_OV8858_MIPI_RAW, currSensorName)))
         {
             mt_set_gpio_mode(GPIO_SPI_MOSI_PIN,GPIO_MODE_00);
             mt_set_gpio_dir(GPIO_SPI_MOSI_PIN,GPIO_DIR_OUT);
@@ -292,7 +292,7 @@ u32 pinSet[3][8] = {
 
             mdelay(1);
 
-            if(TRUE != _hwPowerOn(SUB_CAMERA_POWER_VCAM_D, VOL_1500,mode_name))
+            if(TRUE != _hwPowerOn(SUB_CAMERA_POWER_VCAM_D, VOL_1200,mode_name))
             {
                  PK_DBG("[CAMERA SENSOR] Fail to enable digital power (VCAM_D), power id = %d \n", SUB_CAMERA_POWER_VCAM_D);
                  goto _kdCISModulePowerOn_exit_;
