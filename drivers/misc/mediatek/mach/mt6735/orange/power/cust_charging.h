@@ -8,11 +8,11 @@
 
 /* Battery Temperature Protection */
 #define MTK_TEMPERATURE_RECHARGE_SUPPORT
-#define MAX_CHARGE_TEMPERATURE  55
-#define MAX_CHARGE_TEMPERATURE_MINUS_X_DEGREE	47
-#define MIN_CHARGE_TEMPERATURE  0
-#define MIN_CHARGE_TEMPERATURE_PLUS_X_DEGREE	6
-#define ERR_CHARGE_TEMPERATURE  0xFF
+#define MAX_CHARGE_TEMPERATURE   50
+#define MAX_CHARGE_TEMPERATURE_MINUS_X_DEGREE	48
+#define MIN_CHARGE_TEMPERATURE   0
+#define MIN_CHARGE_TEMPERATURE_PLUS_X_DEGREE	2
+#define ERR_CHARGE_TEMPERATURE   0xFF
 
 /* Linear Charging Threshold */
 #define V_PRE2CC_THRES	 		3400	//mV
@@ -27,7 +27,11 @@
 #define USB_CHARGER_CURRENT_CONFIGURED		CHARGE_CURRENT_500_00_MA	// 500mA
 
 #define USB_CHARGER_CURRENT					CHARGE_CURRENT_500_00_MA	//500mA
-#define AC_CHARGER_CURRENT					CHARGE_CURRENT_800_00_MA
+#define USB_CHARGER_CURRENT_OUTPUT_MAX       CHARGE_CURRENT_600_00_MA	//800
+#define AC_CHARGER_CURRENT					CHARGE_CURRENT_1900_00_MA
+#define AC_CHARGER_CURRENT_OUTPUT_MAX		CHARGE_CURRENT_1900_00_MA
+#define AC_CHARGER_CURRENT_LIMIT					CHARGE_CURRENT_1200_00_MA //Other_lenovo_req huangfusheng.wt modify 20150629 temperature rise test
+#define AC_CHARGER_CURRENT_OUTPUT_LIMIT_MAX		CHARGE_CURRENT_1200_00_MA //Other_lenovo_req huangfusheng.wt modify 20150629 temperature rise test
 //#define AC_CHARGER_CURRENT					CHARGE_CURRENT_1000_00_MA
 #define NON_STD_AC_CHARGER_CURRENT			CHARGE_CURRENT_500_00_MA
 #define CHARGING_HOST_CHARGER_CURRENT       CHARGE_CURRENT_650_00_MA
@@ -38,10 +42,10 @@
 
 /* Precise Tunning */
 #define BATTERY_AVERAGE_DATA_NUMBER	3	
-#define BATTERY_AVERAGE_SIZE 	30
+#define BATTERY_AVERAGE_SIZE 	15
 
 /* charger error check */
-//#define BAT_LOW_TEMP_PROTECT_ENABLE         // stop charging if temp < MIN_CHARGE_TEMPERATURE
+#define BAT_LOW_TEMP_PROTECT_ENABLE         // stop charging if temp < MIN_CHARGE_TEMPERATURE
 #define V_CHARGER_ENABLE 0				// 1:ON , 0:OFF	
 #define V_CHARGER_MAX 6000				// 6.5 V
 #define V_CHARGER_MIN 4400				// 4.4 V
@@ -50,7 +54,7 @@
 #define ONEHUNDRED_PERCENT_TRACKING_TIME	10	// 10 second
 #define NPERCENT_TRACKING_TIME	   			20	// 20 second
 #define SYNC_TO_REAL_TRACKING_TIME  		60	// 60 second
-#define V_0PERCENT_TRACKING							3380 //3450mV
+#define V_0PERCENT_TRACKING							3450 //3450mV
 
 /* Battery Notify */
 #define BATTERY_NOTIFY_CASE_0001_VCHARGER
@@ -60,7 +64,7 @@
 //#define BATTERY_NOTIFY_CASE_0005_TOTAL_CHARGINGTIME
 
 /* High battery support */
-//#define HIGH_BATTERY_VOLTAGE_SUPPORT
+#define HIGH_BATTERY_VOLTAGE_SUPPORT
 
 /* JEITA parameter */
 //#define MTK_JEITA_STANDARD_SUPPORT
@@ -107,5 +111,35 @@
 
 #define MTK_PLUG_OUT_DETECTION
 #define CHARGING_HOST_SUPPORT
+#define WT_CHR_OVP_RESUME	//Other 20150420 huangfusheng.wt add ovp resume 
+#define WT_HW_OVP_THRESHHOLD //Other 20150420 huangfusheng.wt add setting hw ovp threshhold,platform modify
+#define WT_BAT_TEMP_NOTIFY_RESUME //Other 20150420 huangfusheng.wt  over temperature tip range modify  
+//+Other 20150420 huangfusheng.wt  ui_soc sync full in charging
+#define WT_UI_SOC_SYNC_FULL_IN_CHARGING   
+#ifdef WT_UI_SOC_SYNC_FULL_IN_CHARGING
+ #define WT_UI_SOC_SYNC_FULL_ITERM  450
+#endif
+//-Other 20150420 huangfusheng.wt ui_soc  sync full in charging
+#define WT_BATTERY_CAPACITY_INFO //Other 20150420 huangfusheng.wt add battery capacity info	
 
+//+Other 20150420 huangfusheng.wt add add low vbat percent tracking
+#define WT_VBAT_LOW_PERCENT_TRACKING
+#ifdef WT_VBAT_LOW_PERCENT_TRACKING
+#define  V_LOW_BAT_CHECK   3600
+#define  VBATSOC_SYNC_TO_SOC_TRACKING_TIME  90
+#define  VBAT_LOW_PERCENT_TRACKING_THRESHHOLD 7
+#endif
+//-Other 20150420 huangfusheng.wt add add low vbat percent tracking
+
+#define WT_UI_SOC_INITIAL  //Other_platform_modify  huangfusheng.wt ADD 20150519  solve ui_soc initial error
+#define WT_BAT_CHARGE_CV_TEMP_LIMIT 	   	 //Other_user_req  huangfusheng.wt  20150520 add set different cv in different temperature
+#define WT_BAT_CHARGE_CURRENT_TEMP_LIMIT //Other_user_req  huangfusheng.wt  20150520 add set charging current in different temperature
+#ifdef WT_BAT_CHARGE_CURRENT_TEMP_LIMIT
+#define AC_CHARGER_CURRENT_LOW_TEMP				CHARGE_CURRENT_1000_00_MA
+#endif
+
+//#define WT_DECREASE_CHARGING_SURRENT_NEAR_FULL   // Other_platform_modify  huangfusheng.wt  20150520 add set charging current near cv only high voltage battery
+//#ifdef WT_DECREASE_CHARGING_SURRENT_NEAR_FULL
+//#define AC_CHARGER_CURRENT_NEAR_FULL  	CHARGE_CURRENT_1000_00_MA  
+//#endif
 #endif /* _CUST_BAT_H_ */ 

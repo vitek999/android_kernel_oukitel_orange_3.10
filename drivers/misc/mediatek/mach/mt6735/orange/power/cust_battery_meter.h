@@ -29,10 +29,10 @@
 #define FG_METER_RESISTANCE 	0
 
 /* Qmax for battery  */
-#define Q_MAX_POS_50	2500
-#define Q_MAX_POS_25	2432
-#define Q_MAX_POS_0		2244
-#define Q_MAX_NEG_10	1654
+#define Q_MAX_POS_50	3938
+#define Q_MAX_POS_25	3932
+#define Q_MAX_POS_0	3913
+#define Q_MAX_NEG_10	3988
 
 #define Q_MAX_POS_50_H_CURRENT	2500
 #define Q_MAX_POS_25_H_CURRENT	2390
@@ -46,20 +46,16 @@
 
 /* battery meter parameter */
 #define CHANGE_TRACKING_POINT
-#ifdef CONFIG_MTK_HAFG_20
-#define CUST_TRACKING_POINT  0
-#else
-#define CUST_TRACKING_POINT  1
-#endif
-#define CUST_R_SENSE         68
-#define CUST_HW_CC 		    0
-#define AGING_TUNING_VALUE   103
-#define CUST_R_FG_OFFSET    0
+#define CUST_TRACKING_POINT  		1
+#define CUST_R_SENSE         		33
+#define CUST_HW_CC 		    	0
+#define AGING_TUNING_VALUE   		103
+#define CUST_R_FG_OFFSET    	0
 
 #define OCV_BOARD_COMPESATE	0 //mV 
 #define R_FG_BOARD_BASE		1000
 #define R_FG_BOARD_SLOPE	1000 //slope
-#define CAR_TUNE_VALUE		97 //1.00
+#define CAR_TUNE_VALUE		101 //1.00
 
 
 /* HW Fuel gague  */
