@@ -613,7 +613,7 @@ static void hw_bc11_dump_register(void)
 
    	//if(run_hw_init_once_flag)
 	//{
-         ncp1854_set_ieoc(0x0);
+         ncp1854_set_ieoc(0x4);   //Other_project_modify huangfusheng.wt MODIFY 20150525 modify charging full iterminate
          ncp1854_set_iweak(0x3); //weak charge current = 300mA
       // run_hw_init_once_flag=0;
 	//}
@@ -687,7 +687,7 @@ static void hw_bc11_dump_register(void)
 	kal_uint32 set_chr_cv;	
 
 	#if defined(HIGH_BATTERY_VOLTAGE_SUPPORT)
-		cv_value = BATTERY_VOLT_04_350000_V;
+		//cv_value = BATTERY_VOLT_04_350000_V;
 	#endif
 
 	//use nearest value
@@ -695,7 +695,7 @@ static void hw_bc11_dump_register(void)
 	set_chr_cv = bmt_find_closest_level(VBAT_CV_VTH, array_size, cv_value);
 	
 	register_value = charging_parameter_to_value(VBAT_CV_VTH, GETARRAYNUM(VBAT_CV_VTH), set_chr_cv);
-
+	 pr_notice("[BATTERY:ncp1854] charging_set_cv_voltage,cv_value is %d,register_value is %d\n",cv_value,register_value);
 
 #if 1
     ncp1854_set_ctrl_vbat(register_value);
